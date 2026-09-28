@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Static checks for the portfolio site. Run: python3 tests/check_site.py"""
+import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
@@ -75,6 +76,10 @@ def check():
         if not path.is_file():
             errors.append(f"{rel}: missing")
             continue
+        html = path.read_text(encoding="utf-8")
+        # Without whitespace, screen readers read "CS 184Computer Graphics".
+        for match in re.findall(r'<span class="code">[^<]*</span>(?=\S)', html):
+            errors.append(f"{rel}: no space after {match!r}")
         page = pages[rel] = parse(path)
         if not page.title.strip():
             errors.append(f"{rel}: empty <title>")
