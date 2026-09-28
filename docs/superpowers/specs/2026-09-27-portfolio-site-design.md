@@ -10,6 +10,9 @@ A simple static portfolio for Allan Tsay showcasing CS coursework and game proje
 ## File structure
 ```
 index.html
+projects.html
+about.html
+resume.pdf
 courses/cs184.html
 courses/cs162.html
 courses/cs170.html
@@ -20,12 +23,16 @@ images/games/   (user adds game screenshots)
 ```
 
 ## Main page (`index.html`)
-1. **Intro** — name heading + short drafted paragraph: Allan Tsay, 4th-year Computer Science major; interests taiko, baseball, volleyball, gaming.
-2. **Coursework** — list of courses with term labels:
-   - Linked to detail pages: CS 184 Computer Graphics (Fall 2026), CS 162 Operating Systems (Fall 2026), CS 189 Intro to Machine Learning (Spring 2026), CS 170 Efficient Algorithms and Intractable Problems (Fall 2025).
-   - Listed without a page: CS 61A, CS 61B, CS 61C, CS 70 (no terms given; none shown).
-3. **Game Projects** — one card: "Beetle Fighter" (placeholder title), Unity, bug-themed Street Fighter–style fighter with beetle-inspired characters; screenshot slot (`images/games/`) and link slot.
-4. **Contact** — present in markup but commented out until the user supplies links.
+Kept deliberately short; details live on the Projects and About pages.
+1. **Intro** — name, tagline, two-sentence summary, GitHub/LinkedIn logo links and a Résumé link (`resume.pdf`).
+2. **Projects** — two featured projects (sushiGPT, Beetle Fighter) with one-line blurbs, plus "All projects →".
+3. **Coursework** — the four courses with detail pages, plus a link to About.
+
+## Projects page (`projects.html`)
+sushiGPT summary (links to the CS 189 page), the Beetle Fighter card, and systems/graphics projects (RISC-V emulator, Pintos, rasterizer).
+
+## About page (`about.html`)
+Longer intro and hobbies, résumé link, Experience, Leadership, Skills, and courses without detail pages (CS 61A, 61B, 61C, 70).
 
 ## Course pages (shared layout)
 - Header with "← Back to home" link, course code + name, term.

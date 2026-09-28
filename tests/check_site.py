@@ -7,7 +7,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 COURSE_PAGES = ["cs184", "cs162", "cs170", "cs189"]
-PAGES = ["index.html"] + [f"courses/{c}.html" for c in COURSE_PAGES]
+TOP_PAGES = ["index.html", "projects.html", "about.html"]
+PROJECT_PAGES = ["projects/sushicpu.html"]
+PAGES = TOP_PAGES + [f"courses/{c}.html" for c in COURSE_PAGES] + PROJECT_PAGES
 UNLINKED_COURSES = ["CS 61A", "CS 61B", "CS 61C", "CS 70"]
 
 
@@ -89,15 +91,36 @@ def check():
 
     index = pages.get("index.html")
     if index:
-        for c in COURSE_PAGES:
-            if f"courses/{c}.html" not in index.refs:
-                errors.append(f"index.html: no link to courses/{c}.html")
-        for name in UNLINKED_COURSES + ["Allan Tsay"]:
-            if name not in index.text:
-                errors.append(f"index.html: missing text {name!r}")
-        for heading in ("Coursework", "Game Projects"):
+        for target in [f"courses/{c}.html" for c in COURSE_PAGES] + ["projects.html", "about.html", "resume.pdf"]:
+            if target not in index.refs:
+                errors.append(f"index.html: no link to {target}")
+        if "Allan Tsay" not in index.text:
+            errors.append("index.html: missing text 'Allan Tsay'")
+        for heading in ("Projects", "Coursework"):
             if heading not in [h.strip() for h in index.h2s]:
                 errors.append(f"index.html: missing <h2>{heading}</h2>")
+
+    about = pages.get("about.html")
+    if about:
+        for name in UNLINKED_COURSES:
+            if name not in about.text:
+                errors.append(f"about.html: missing text {name!r}")
+
+    projects = pages.get("projects.html")
+    if projects and "Game Projects" not in [h.strip() for h in projects.h2s]:
+        errors.append("projects.html: missing <h2>Game Projects</h2>")
+
+    for rel in TOP_PAGES[1:]:
+        page = pages.get(rel)
+        if page and "index.html" not in page.refs:
+            errors.append(f"{rel}: no back link to index.html")
+
+    for rel in PROJECT_PAGES:
+        page = pages.get(rel)
+        if page and "../projects.html" not in page.refs:
+            errors.append(f"{rel}: no back link to ../projects.html")
+        if projects and rel not in projects.refs:
+            errors.append(f"projects.html: no link to {rel}")
 
     for c in COURSE_PAGES:
         rel = f"courses/{c}.html"

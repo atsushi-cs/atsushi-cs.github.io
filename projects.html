@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · Allan Tsay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <nav class="back"><a href="index.html">← Back to home</a></nav>
+    <header class="page-header">
+      <h1>Projects</h1>
+    </header>
+
+    <section id="featured">
+      <h2>sushiGPT</h2>
+      <p class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">LLMs</span></p>
+      <p>A GPT-2-scale language model built from scratch in PyTorch: byte-pair tokenizer, decoder-only transformer, pretraining, ported GPT-2 weights, and instruction fine-tuning. <a href="courses/cs189.html#sushigpt">Read more →</a></p>
+
+      <h2>sushiCPU</h2>
+      <p class="tags"><span class="tag">Verilog</span><span class="tag">RISC-V</span></p>
+      <p>A fully pipelined 5-stage RISC-V (RV32I) processor written from scratch in Verilog, with forwarding and load-use hazard detection, built up from a verified single-cycle core. <a href="projects/sushicpu.html">Read more →</a></p>
+    </section>
+
+    <section id="games">
+      <h2>Game Projects</h2>
+      <article class="card">
+        <!-- TODO: replace this slot with a screenshot:
+        <img src="images/games/beetle-fighter.png" alt="Two beetle fighters mid-match"> -->
+        <div class="img-slot">Screenshot coming soon</div>
+        <div class="card-body">
+          <!-- TODO: replace "Beetle Fighter" with the real title -->
+          <h3>Beetle Fighter</h3>
+          <p class="tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Fighting game</span></p>
+          <p>A Street Fighter–style fighting game set in the world of bugs, with a roster of beetle-inspired characters.</p>
+          <!-- TODO: add links when ready:
+          <p><a href="https://example.com/play">Play</a> · <a href="https://github.com/USERNAME/REPO">Source</a></p> -->
+        </div>
+      </article>
+    </section>
+
+    <section id="projects">
+      <h2>Systems and Graphics</h2>
+      <article class="entry">
+        <div class="entry-head"><h3>RISC-V RV32I Emulator</h3><span class="term">Rust</span></div>
+        <p>Built the memory layer and an RV32I decode-and-execute pipeline, translating machine-code instructions into software operations that run programs according to the instruction set's semantics.</p>
+      </article>
+      <article class="entry">
+        <div class="entry-head"><h3>Pintos OS Kernel</h3><span class="term">C</span></div>
+        <p>Added user-process support to an instructional kernel: program loading, argument passing, and system-call handling with memory protection at the user–kernel boundary. <a href="courses/cs162.html">More in CS 162</a>.</p>
+      </article>
+      <article class="entry">
+        <div class="entry-head"><h3>Rasterizer and Geometric Modeling</h3><span class="term">C++</span></div>
+        <p>SVG rasterizer with supersampling, hierarchical transforms, and texture mapping; Bézier curves and surfaces via de Casteljau; Loop subdivision on half-edge meshes. <a href="courses/cs184.html">More in CS 184</a>.</p>
+      </article>
+    </section>
+
+
+    <footer class="site-footer">© 2026 Allan Tsay</footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>sushiCPU · Allan Tsay</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <main class="container">
+    <nav class="back"><a href="../projects.html">← Back to projects</a></nav>
+    <header class="page-header">
+      <p class="eyebrow">Project</p>
+      <h1>sushiCPU</h1>
+    </header>
+
+    <section id="sushicpu">
+      <p class="lede">A fully pipelined 5-stage RISC-V (RV32I) processor, designed and written from scratch in Verilog.</p>
+      <!-- TODO: add simulator/toolchain tags (e.g. Icarus Verilog, Verilator, GTKWave) -->
+      <p class="tags"><span class="tag">Verilog</span><span class="tag">RISC-V</span></p>
+      <!-- TODO: add links when ready:
+      <p><a href="https://github.com/atsushi-cs/sushiCPU">GitHub repo</a> · <a href="...">Waveform / block diagram</a></p> -->
+
+      <h2>What it is</h2>
+      <p>sushiCPU is a from-scratch implementation of the RV32I base integer instruction set in Verilog. I started with the fundamentals (module hierarchy, always blocks, blocking vs. non-blocking assignment, avoiding unintended latch inference) and built up to a complete processor. I first built a working single-cycle core, then extended it to a 5-stage pipeline.</p>
+      <ul>
+        <li><strong>Core datapath:</strong> ALU, register file, immediate generator, control unit, branch unit, PC register, and instruction/data memory.</li>
+        <li><strong>Verification:</strong> validated the single-cycle design with a 17-instruction test program covering arithmetic, memory, branch, and jump instructions.</li>
+        <li><strong>Pipelining:</strong> added a forwarding (bypass) unit for data hazards and hazard detection that stalls on load-use dependencies.</li>
+        <li><strong>Design details:</strong> a 4-way writeback mux to support the different result sources, a dedicated <code>alu_src_a</code> select so AUIPC can use the PC as an ALU operand, and clearing the LSB of JALR targets as the spec requires.</li>
+      </ul>
+
+      <h2>What I learned</h2>
+      <ul>
+        <li><strong>Data hazards are the hard part of pipelining.</strong> The datapath itself was manageable, but read-after-write dependencies between in-flight instructions took the most careful reasoning. Forwarding solved most of them, and load-use cases still needed a stall.</li>
+        <li><strong>Hardware thinking differs from software thinking.</strong> Everything runs in parallel, and small choices like blocking vs. non-blocking assignments or an incomplete if/case can silently synthesize latches or race conditions.</li>
+        <li><strong>The ISA spec is full of small details that matter.</strong> Things like AUIPC needing the PC as an operand and JALR clearing the target's low bit only show up when you implement the instructions and check each one against the spec.</li>
+        <li><strong>Building the simple version first made the pipeline tractable.</strong> Getting a verified single-cycle core before adding stages meant I could tell pipeline bugs apart from datapath bugs.</li>
+        <li><strong>It connects to architecture coursework in a concrete way.</strong> Concepts like hazards, forwarding, and control signals became things I had to debug rather than definitions to memorize.</li>
+      </ul>
+    </section>
+
+    <footer class="site-footer">© 2026 Allan Tsay</footer>
+  </main>
+</body>
+</html>

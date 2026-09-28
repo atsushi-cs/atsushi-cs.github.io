@@ -15,17 +15,30 @@
     </header>
 
     <section id="sushigpt">
-      <h2>SushiGPT</h2>
+      <h2>sushiGPT</h2>
+      <p class="lede">A GPT-2-scale language model built from scratch in PyTorch, from tokenizer to instruction-tuned chatbot.</p>
+      <p class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">MPS</span><span class="tag">Google Colab (T4)</span></p>
+      <!-- TODO: add links when ready:
+      <p><a href="https://github.com/atsushi-cs/REPO">GitHub repo</a> · <a href="...">Sample outputs</a></p> -->
+
       <h3>What it is</h3>
-      <!-- TODO: describe SushiGPT: the goal, the data, the model, and results -->
-      <p class="placeholder">Project description coming soon.</p>
+      <p>sushiGPT is a full GPT-style language model I built from the ground up, following Andrej Karpathy's Zero to Hero curriculum, to understand every layer of the stack instead of treating it as a black box. The project covers the whole LLM pipeline:</p>
+      <ul>
+        <li><strong>Tokenization:</strong> implemented byte-pair encoding from scratch, including a basic tokenizer and a regex-based tokenizer in the style of GPT-2.</li>
+        <li><strong>Architecture:</strong> wrote the full decoder-only transformer, using GPT-2 small dimensions (768 embedding size, 12 heads, 12 layers, 1024 context, 50,257-token vocabulary).</li>
+        <li><strong>Pretraining:</strong> trained on Tiny Shakespeare locally, using Apple's MPS backend on my MacBook.</li>
+        <li><strong>Loading real weights:</strong> manually ported pretrained GPT-2 weights into my own implementation, handling the Conv1D weight transposes and splitting the fused Q/K/V matrices.</li>
+        <li><strong>Supervised fine-tuning:</strong> fine-tuned on the Alpaca instruction dataset using prompt loss masking so the model learns only from response tokens. This ran on a T4 GPU in Google Colab.</li>
+      </ul>
 
       <h3>What I learned</h3>
-      <!-- TODO: replace with a list of takeaways, e.g.
       <ul>
-        <li>...</li>
-      </ul> -->
-      <p class="placeholder">Takeaways coming soon.</p>
+        <li><strong>Building it end to end changed how I think about LLMs.</strong> Writing the tokenizer, attention, and training loop myself made concepts like context length, weight layout, and loss masking concrete instead of abstract.</li>
+        <li><strong>Loading pretrained weights is a debugging exercise in details.</strong> Matching GPT-2's checkpoint format meant working out transposed Conv1D weights and splitting the combined attention projection. A shape mismatch or a silent transpose error produces a model that runs but outputs garbage.</li>
+        <li><strong>Fine-tuning quality depends on what you train on.</strong> Masking the prompt tokens in the loss kept the model focused on producing good responses rather than memorizing instructions.</li>
+        <li><strong>Overfitting and repetition are fixable.</strong> Small-data training led to repetitive output, which I addressed with temperature sampling, top-k sampling, and earlier stopping.</li>
+        <li><strong>Compute constraints shape workflow.</strong> I used local hardware for pretraining and moved to a cloud GPU when fine-tuning outgrew it.</li>
+      </ul>
     </section>
 
     <section id="overview">
