@@ -83,6 +83,7 @@ img { display: block; max-width: 100%; height: auto; }
   border-radius: 10px;
 }
 .card > .img-slot { aspect-ratio: 16 / 9; border-width: 0 0 2px; border-radius: 0; }
+.card > img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--border); }
 .card-body { padding: 1rem 1.25rem 0.25rem; }
 .card-body h3 { margin-top: 0; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
