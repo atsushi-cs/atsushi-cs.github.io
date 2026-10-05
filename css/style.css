@@ -9,19 +9,6 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #15171a;
-    --surface: #1d2024;
-    --text: #e6e4e0;
-    --muted: #9ba1a8;
-    --accent: #8cb8e8;
-    --border: #2d3137;
-    --slot: #474c54;
-    color-scheme: dark;
-  }
-}
-
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 

@@ -136,8 +136,10 @@ def check():
             errors.append(f"{rel}: last <h2> must be 'Course Overview'")
 
     css = ROOT / "css/style.css"
-    if not css.is_file() or "prefers-color-scheme: dark" not in css.read_text(encoding="utf-8"):
-        errors.append("css/style.css: missing or has no dark-mode block")
+    if not css.is_file():
+        errors.append("css/style.css: missing")
+    elif "prefers-color-scheme: dark" in css.read_text(encoding="utf-8"):
+        errors.append("css/style.css: must not switch to dark mode automatically")
 
     return errors
 
