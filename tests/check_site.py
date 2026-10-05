@@ -6,11 +6,11 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-COURSE_PAGES = ["cs184", "cs162", "cs170", "cs189"]
-TOP_PAGES = ["index.html", "projects.html", "about.html"]
+COURSE_PAGES = ["cs184", "cs162", "gamedesign", "cs189"]
+TOP_PAGES = ["index.html", "projects.html", "about.html", "coursework.html"]
 PROJECT_PAGES = ["projects/sushicpu.html"]
 PAGES = TOP_PAGES + [f"courses/{c}.html" for c in COURSE_PAGES] + PROJECT_PAGES
-UNLINKED_COURSES = ["CS 61A", "CS 61B", "CS 61C", "CS 70"]
+UNLINKED_COURSES = ["CS 61A", "CS 61B", "CS 61C", "CS 70", "CS 168", "CS 170", "CS 188", "Data 100"]
 
 
 class Page(HTMLParser):
@@ -91,7 +91,7 @@ def check():
 
     index = pages.get("index.html")
     if index:
-        for target in [f"courses/{c}.html" for c in COURSE_PAGES] + ["projects.html", "about.html", "resume.pdf"]:
+        for target in [f"courses/{c}.html" for c in COURSE_PAGES] + ["projects.html", "about.html", "coursework.html", "resume.pdf"]:
             if target not in index.refs:
                 errors.append(f"index.html: no link to {target}")
         if "Allan Tsay" not in index.text:
@@ -100,11 +100,14 @@ def check():
             if heading not in [h.strip() for h in index.h2s]:
                 errors.append(f"index.html: missing <h2>{heading}</h2>")
 
-    about = pages.get("about.html")
-    if about:
+    coursework = pages.get("coursework.html")
+    if coursework:
         for name in UNLINKED_COURSES:
-            if name not in about.text:
-                errors.append(f"about.html: missing text {name!r}")
+            if name not in coursework.text:
+                errors.append(f"coursework.html: missing text {name!r}")
+        for c in COURSE_PAGES:
+            if f"courses/{c}.html" not in coursework.refs:
+                errors.append(f"coursework.html: no link to courses/{c}.html")
 
     projects = pages.get("projects.html")
     if projects and "Game Projects" not in [h.strip() for h in projects.h2s]:

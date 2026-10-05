@@ -74,6 +74,7 @@ img { display: block; max-width: 100%; height: auto; }
 .course-list a:hover { text-decoration: underline; }
 .code { margin-right: 0.1rem; font-weight: 700; white-space: nowrap; }
 .term { font-size: 0.9rem; white-space: nowrap; }
+.course-list .desc { flex-basis: 100%; margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--muted); }
 
 /* Game card */
 .card {
@@ -117,6 +118,8 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .gallery figure { margin: 0; }
 .gallery img { border: 1px solid var(--border); border-radius: 8px; }
+.assignment > figure { margin: 0.75rem 0 0; }
+.assignment > figure img { border: 1px solid var(--border); border-radius: 8px; }
 figcaption { margin-top: 0.3rem; font-size: 0.85rem; }
 
 /* Course pages */
@@ -125,10 +128,13 @@ figcaption { margin-top: 0.3rem; font-size: 0.85rem; }
 
 .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; list-style: none; padding: 0; }
 .site-footer { margin-top: 3rem; font-size: 0.85rem; }
+.labs { columns: 2; column-gap: 2rem; padding-left: 1.75rem; }
+.labs li { break-inside: avoid; }
 
 @media (max-width: 480px) {
   .container { padding-top: 32px; }
   h1 { font-size: 1.9rem; }
+  .labs { columns: 1; }
 }
 
 /* Social links */
