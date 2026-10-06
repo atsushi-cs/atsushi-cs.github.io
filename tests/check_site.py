@@ -88,6 +88,8 @@ def check():
         if not page.has_viewport:
             errors.append(f"{rel}: missing viewport meta")
         check_links(rel, path, page, errors)
+        if not any(ref.endswith("favicon.svg") for ref in page.refs):
+            errors.append(f"{rel}: no favicon link")
 
     index = pages.get("index.html")
     if index:

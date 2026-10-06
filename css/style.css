@@ -145,15 +145,26 @@ figcaption { margin-top: 0.3rem; font-size: 0.85rem; }
 .skills { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1rem; margin: 0; }
 .skills dt { font-weight: 600; }
 .skills dd { margin: 0; }
-.social { align-items: center; }
+.social { align-items: center; flex-wrap: wrap; }
 .social a.pill {
   padding: 0.15rem 0.7rem;
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   border: 1px solid var(--border);
   border-radius: 999px;
 }
+.social svg { display: block; width: 15px; height: 15px; fill: currentColor; }
+
+/* Home: photo */
+.intro-head { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1rem; }
+.intro-head h1 { margin-bottom: 0.25em; }
+.intro-head .tagline { margin: 0; }
+.photo { flex: none; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+.img-slot.photo { min-height: 0; padding: 0; }
 
 /* Home: featured projects */
 .feature-list { list-style: none; margin: 0; padding: 0; }

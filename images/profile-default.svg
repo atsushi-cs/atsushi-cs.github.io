@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs><clipPath id="c"><circle cx="48" cy="48" r="48"/></clipPath></defs>
+  <circle cx="48" cy="48" r="48" fill="#d9d5cd"/>
+  <g clip-path="url(#c)" fill="#ffffff">
+    <circle cx="48" cy="38" r="17"/>
+    <ellipse cx="48" cy="92" rx="33" ry="30"/>
+  </g>
+</svg>
